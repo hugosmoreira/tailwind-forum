@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Sidebar from '../components/sidebar'
-
-
+import Feed from  '../components/home/Feed'
+import Widgets from '../components/widgets'
 
 
 const style =  {
@@ -18,8 +18,8 @@ const Home = () => {
     <div className={style.wrapper}>
      <div className={style.content}>
         <Sidebar />
-        <h2>Feed</h2>
-        <h2>Widgets</h2>
+        <Feed />
+        <Widgets />
      </div>
     </div>
   )

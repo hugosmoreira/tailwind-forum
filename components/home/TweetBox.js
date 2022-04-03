@@ -21,63 +21,20 @@ const style = {
 }
 
 function TweetBox() {
-  const [tweetMessage, setTweetMessage] = useState('')
-  const { currentAccount, fetchTweets, currentUser } =
-    useContext(TwitterContext)
-
-  const submitTweet = async (event) => {
-    event.preventDefault()
-
-    if (!tweetMessage) return
-    const tweetId = `${currentAccount}_${Date.now()}`
-
-    const tweetDoc = {
-      _type: 'tweets',
-      _id: tweetId,
-      tweet: tweetMessage,
-      timestamp: new Date(Date.now()).toISOString(),
-      author: {
-        _key: tweetId,
-        _ref: currentAccount,
-        _type: 'reference',
-      },
-    }
-
-    await client.createIfNotExists(tweetDoc)
-
-    await client
-      .patch(currentAccount)
-      .setIfMissing({ tweets: [] })
-      .insert('after', 'tweets[-1]', [
-        {
-          _key: tweetId,
-          _ref: tweetId,
-          _type: 'reference',
-        },
-      ])
-      .commit()
-
-    await fetchTweets()
-    setTweetMessage('')
-  }
-
+ 
   return (
     <div className={style.wrapper}>
       <div className={style.tweetBoxLeft}>
         <img
-          src={currentUser.profileImage}
-          className={
-            currentUser.isProfileImageNft
-              ? `${style.profileImage} smallHex`
-              : style.profileImage
-          }
+          
+         
         />
       </div>
       <div className={style.tweetBoxRight}>
         <form>
           <textarea
             onChange={e => setTweetMessage(e.target.value)}
-            value={tweetMessage}
+            
             placeholder="What's happening?"
             className={style.inputField}
           />
@@ -93,10 +50,8 @@ function TweetBox() {
             <button
               type='submit'
               onClick={event => submitTweet(event)}
-              disabled={!tweetMessage}
-              className={`${style.submitGeneral} ${
-                tweetMessage ? style.activeSubmit : style.inactiveSubmit
-              }`}
+             
+             
             >
               Tweet
             </button>
@@ -105,6 +60,5 @@ function TweetBox() {
       </div>
     </div>
   )
-}
-
+  }
 export default TweetBox
