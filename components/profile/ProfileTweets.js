@@ -10,31 +10,31 @@ const style = {
 
 
 const ProfileTweets = () => {
-  const { currentUser } = useContext(TwitterContext)
-  const [tweets, setTweets] = useState<Tweets>([
+  
+  const [tweets, setTweets] = useState([
     {
       timestamp: '',
       tweet: '',
     },
   ])
-  const [author, setAuthor] = useState<Author>({
+  const [author, setAuthor] = useState({
     name: '',
     profileImage: '',
     walletAddress: '',
     isProfileImageNft: undefined,
   })
 
-  useEffect(() => {
-    if (!currentUser) return
+  // useEffect(() => {
+  //   if (!currentUser) return
 
-    setTweets(currentUser.tweets)
-    setAuthor({
-      name: currentUser.name,
-      profileImage: currentUser.profileImage,
-      walletAddress: currentUser.walletAddress,
-      isProfileImageNft: currentUser.isProfileImageNft,
-    })
-  }, [currentUser])
+  //   setTweets(currentUser.tweets)
+  //   setAuthor({
+  //     name: currentUser.name,
+  //     profileImage: currentUser.profileImage,
+  //     walletAddress: currentUser.walletAddress,
+  //     isProfileImageNft: currentUser.isProfileImageNft,
+  //   })
+  // }, [currentUser])
 
   return (
     <div className={style.wrapper}>

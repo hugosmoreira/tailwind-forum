@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import SidebarOption from './SidebarOption'
